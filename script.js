@@ -142,22 +142,3 @@ document.querySelectorAll('.tb-bar').forEach((bar) => {
     });
   }
 });
-
-// document.querySelectorAll('.tb-bar, .hidden-content').forEach((ele) => {
-//   ele.addEventListener('touchstart', (e) => {
-//     if (e.target.closest('.tb-bar')) {
-//       e.target.closest('.tb-bar').classList.toggle('mobile');
-//     }
-
-//     if (e.target.closest('.hidden-content')) {
-//       const tbBar = document.querySelector('.tb-bar');
-//       if (tbBar) {
-//         tbBar.classList.toggle('mobile');
-//       }
-//     } else if (e.target.classList.contains('tb-bar')) {
-//       element.classList.toggle('mobile');
-//     } else {
-//       e.target.closest('.tb-bar').classList.toggle('mobile');
-//     }
-//   });
-// });
