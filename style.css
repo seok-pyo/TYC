@@ -1,0 +1,570 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  font-size: 18px;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block-end: 0;
+  margin: 0;
+  font-family: 'danjo', sans-serif;
+  font-weight: 400;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  user-select: none;
+  word-spacing: -4px;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+@font-face {
+  font-family: 'danjo';
+  src: url('font/OnulDanjo-ExtraBold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'danjo';
+  src: url('font/OnulDanjo-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'danjo';
+  src: url('font/OnulDanjo-Thin.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Plate div */
+.container {
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.plate {
+  top: 0; /*화면 우측에 고정*/
+  background-color: white;
+  width: 50vw;
+  height: 100vh;
+  border-left: 1px black solid;
+  position: fixed; /*화면 우측에 고정*/
+  margin-left: 50vw;
+  z-index: 10;
+  padding-top: 2vh;
+  padding-left: 2vh;
+}
+
+.background {
+  width: 50vw;
+  height: 100vh;
+  overflow-y: scroll; /*화면 우측에 고정*/
+  z-index: 5;
+  /* display: inline-block; inline-block을 하게 되면 화면에 뿌려지는 글자들이 적어지는 이유*/
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  padding: 2vh;
+}
+
+.background::-webkit-scrollbar {
+  display: none;
+}
+
+.main-title {
+  width: 40vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  align-items: start;
+  gap: 25px;
+}
+
+.title {
+  font-weight: 800;
+  margin-bottom: 3vh;
+}
+
+.intro {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  word-break: keep-all;
+  line-height: 1.7rem;
+  text-indent: 1rem;
+}
+
+.st {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+
+.logo-container {
+  font-size: 2rem;
+  font-weight: 800;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100px;
+  text-align: center;
+  align-content: center;
+  position: relative;
+}
+
+.theme {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-right: 1rem;
+}
+
+.event-date {
+  font-size: 1rem;
+  word-break: keep-all;
+}
+
+.sline {
+  display: block;
+  border: 0;
+  height: 1px;
+  background: #000000;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0 1rem;
+}
+
+.plate-button,
+.list-button {
+  display: inline-block;
+  border: none;
+  background-color: white;
+  padding: 0;
+  margin-right: 1rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  width: auto;
+}
+
+li {
+  border-bottom: 1px solid black;
+  line-height: 2rem;
+  word-break: keep-all;
+}
+
+.time-table td {
+  word-break: keep-all;
+  vertical-align: top;
+  height: 3rem;
+  border-top: 1px solid black;
+  padding-top: 0.5rem;
+}
+
+.popup-overlay {
+  display: none;
+  position: fixed;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.popup-img {
+  width: 40vw;
+  display: block;
+}
+
+.popup-content {
+  background-color: white;
+  width: 40vw;
+  padding: 20px;
+  text-align: center;
+  display: block;
+}
+
+.hidden-content {
+  display: none;
+  overflow: hidden;
+  line-height: 1.7rem;
+}
+
+.hidden-content.show {
+  display: table-row;
+  width: 20vw;
+  display: inline;
+  word-break: keep-all;
+}
+
+.profile {
+  margin-top: 2rem;
+  float: left;
+  margin: 0 15px 15px 0;
+  width: 20vw;
+}
+
+.profile-left {
+  text-indent: 1rem;
+  margin-top: 2rem;
+}
+
+.profile-text {
+  margin-bottom: 15px;
+  font-weight: 100;
+}
+
+.profile-right {
+  display: flex;
+  /* justify-content: flex-end; */
+  align-items: start;
+  margin: 2rem 0 2rem 0;
+  font-size: 1rem;
+}
+
+.tb-bar {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1fr;
+  height: auto; /*check this out*/
+}
+
+.tb-bar.mobile {
+  background-color: black !important;
+  color: white !important;
+}
+
+.tb-break {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1fr;
+  height: auto;
+}
+
+.tb-bar:hover {
+  background-color: black;
+  color: white;
+}
+
+.tb-time {
+  margin-right: 1.5rem;
+  vertical-align: middle;
+}
+
+.tb-title {
+  word-break: keep-all;
+}
+
+.tb-author {
+  justify-self: end;
+}
+
+/* .logo-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100px;
+} */
+
+.d1,
+.d2,
+.d3,
+.d4 {
+  line-height: 1.1;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  /* align-items: flex-end; */
+}
+
+.d1,
+.d3 {
+  border-right: 2px solid black;
+}
+
+.d3,
+.d4 {
+  border-top: 2px solid black;
+}
+
+.name {
+  display: block;
+  font-weight: 800;
+}
+
+.randomText {
+  display: flex;
+  visibility: visible;
+  /* background-color: black; */
+  width: 25px;
+  height: 25px;
+  align-items: flex-end; /*check*/
+  justify-content: center; /*check*/
+  border-radius: 50%;
+  text-align: center;
+}
+
+p[data-letter='letter0'],
+p[data-letter='letter3'],
+p[data-letter='letter6'] {
+  background-color: rgb(255, 68, 0);
+}
+
+p[data-letter='letter1'],
+p[data-letter='letter4'],
+p[data-letter='letter7'] {
+  background-color: rgb(0, 47, 255);
+}
+
+p[data-letter='letter2'],
+p[data-letter='letter5'],
+p[data-letter='letter8'] {
+  background-color: rgb(255, 174, 0);
+}
+
+p[data-letter='letter2-0'],
+p[data-letter='letter2-3'],
+p[data-letter='letter2-6'] {
+  background-color: rgb(255, 68, 0);
+}
+
+p[data-letter='letter2-1'],
+p[data-letter='letter2-4'],
+p[data-letter='letter2-7'] {
+  background-color: rgb(0, 47, 255);
+}
+
+p[data-letter='letter2-2'],
+p[data-letter='letter2-5'],
+p[data-letter='letter2-8'] {
+  background-color: rgb(255, 174, 0);
+}
+
+.tb-break {
+  color: #c1c1c1;
+}
+
+.description {
+  color: rgb(255, 68, 0);
+  display: none;
+}
+
+.footer {
+  margin-top: 10rem;
+  text-align: center;
+  font-size: 14px;
+  color: #a2a2a2;
+}
+
+.ticketLink {
+  margin: 4rem auto 5rem auto;
+  display: flex;
+  width: 10rem;
+  height: 3rem;
+  background-color: #ff4400;
+  justify-content: center;
+  align-items: center;
+}
+
+.ticketLink:hover {
+  background-color: black;
+  color: white;
+}
+
+/*---------------------------------------*/
+
+/* Mobile */
+
+@media (max-width: 760px) {
+  .description {
+    display: inline;
+    font-size: 0.8rem;
+  }
+
+  .profile-right {
+    margin: 2rem 0 2rem 0;
+    display: inherit;
+  }
+
+  .tb-bar:hover {
+    background-color: white;
+    color: black;
+  }
+}
+
+@media (max-width: 900px) {
+  .event-date,
+  .tb-time {
+    pointer-events: none;
+  }
+
+  .hidden-content {
+    line-height: 1.5rem;
+  }
+
+  .profile-left {
+    line-height: 1.7rem;
+  }
+
+  .profile-text {
+    font-size: 0.8rem;
+    clear: both;
+  }
+
+  .profile {
+    margin-top: 2rem;
+    float: left;
+    margin: 0 15px 15px 0;
+    width: 50vw;
+  }
+
+  body {
+    font-size: 1rem;
+  }
+
+  .main-title {
+    width: 90vw;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+
+  .plate {
+    width: 100vw;
+    height: 0;
+    border-left: none;
+    position: relative;
+    margin-left: 0;
+    border-bottom: 1px black solid;
+    visibility: hidden;
+    padding: 0;
+  }
+
+  .randomText {
+    display: flex;
+    visibility: visible;
+    /* background-color: #ff5061; */
+    width: 25px;
+    height: 25px;
+    align-items: flex-end; /*check*/
+    justify-content: center; /*check*/
+    border-radius: 50%;
+    text-align: center;
+  }
+
+  .background {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  /* flex 요소 순서 바꾸기 */
+  .container {
+    flex-direction: column;
+  }
+
+  .section:nth-child(1) {
+    order: 2;
+  }
+
+  .section:nth-child(2) {
+    order: 1;
+  }
+
+  .event-date {
+    grid-column: span 2;
+  }
+
+  .popup-img,
+  .popup-content {
+    width: 80vw;
+  }
+}
